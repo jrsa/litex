@@ -380,14 +380,15 @@ class Builder:
 
         # Compile the BIOS when the SoC uses it.
         if self.soc.cpu_type is not None:
+            print('cpu typeis not None :D')
+            # Prepare/Generate ROM software.
+            use_bios = (
+                # BIOS compilation enabled.
+                self.compile_software and
+                # ROM contents has not already been initialized.
+                (not self.soc.integrated_rom_initialized)
+            )
             if self.soc.cpu.use_rom:
-                # Prepare/Generate ROM software.
-                use_bios = (
-                    # BIOS compilation enabled.
-                    self.compile_software and
-                    # ROM contents has not already been initialized.
-                    (not self.soc.integrated_rom_initialized)
-                )
                 if use_bios:
                     self.soc.check_bios_requirements()
                     self._check_meson()
@@ -404,6 +405,9 @@ class Builder:
                     # Only initialize if not already initialized.
                     if not getattr(self.soc, "rom").mem.init:
                         self._initialize_rom_software()
+            else:
+                print('... but cpu.use_rom is false')
+                self._generate_rom_software(compile_bios=use_bios)
 
         # Translate compile_gateware to run.
         if "run" not in kwargs:

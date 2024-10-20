@@ -27,7 +27,7 @@ class Zynq7000(CPU):
     human_name           = "Zynq7000"
     data_width           = 32
     endianness           = "little"
-    reset_address        = 0xfc00_0000
+    reset_address        = 0x0000_0000
     gcc_triple           = "arm-none-eabi"
     gcc_flags            = "-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard"
     linker_output_format = "elf32-littlearm"
@@ -39,9 +39,9 @@ class Zynq7000(CPU):
     @property
     def mem_map(self):
         return {
-            "sram": 0x0010_0000,  # DDR in fact
+            "sram": 0x0000_0000,  # DDR in fact
             "csr":  0x4000_0000,  # default GP0 address on Zynq
-            "rom":  0xfc00_0000,
+            #"rom":  0xfc00_0000,
         }
 
     def __init__(self, platform, variant, *args, **kwargs):

@@ -100,6 +100,10 @@ __attribute__((__used__)) int main(int i, char **c)
 	uart_init();
 #endif
 
+//    while (1) {
+//        asm("wfe");
+//    }
+
 #ifdef CONFIG_HAS_I2C
 	i2c_send_init_cmds();
 #endif
@@ -138,8 +142,10 @@ __attribute__((__used__)) int main(int i, char **c)
 		(1 << (CONFIG_BUS_ADDRESS_WIDTH - 30)));
 	printf("\e[1mCSR\e[0m:\t\t%d-bit data\n",
 		CONFIG_CSR_DATA_WIDTH);
+#ifdef ROM_SIZE
 	printf("\e[1mROM\e[0m:\t\t");
 	print_size(ROM_SIZE);
+#endif
 	printf("\n");
 	printf("\e[1mSRAM\e[0m:\t\t");
 	print_size(SRAM_SIZE);
@@ -228,7 +234,8 @@ __attribute__((__used__)) int main(int i, char **c)
 	init_dispatcher();
 
 	/* Execute Boot sequence */
-#ifndef CONFIG_BIOS_NO_BOOT
+//#ifndef CONFIG_BIOS_NO_BOOT
+#if 0
 	if(sdr_ok) {
 		printf("--============== \e[1mBoot\e[0m ==================--\n");
 		boot_sequence();

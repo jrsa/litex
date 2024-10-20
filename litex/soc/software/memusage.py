@@ -16,6 +16,7 @@ def print_usage(bios,regions, triple):
     result = result.stdout.decode('utf-8')
     result = result.split('\n')
 
+    rom_size = None
     with open(regions, "r") as regfile:
         for line in regfile:
            if line == 0:
@@ -47,7 +48,8 @@ def print_usage(bios,regions, triple):
                 tokens = list(filter(None,line.split(' ')))
                 ram_usage += int(tokens[6], 16)
 
-    print("\nROM usage: {:.2f}KiB \t({:.2f}%)".format(rom_usage / 1024.0, rom_usage / rom_size * 100.0))
+    if rom_size:
+        print("\nROM usage: {:.2f}KiB \t({:.2f}%)".format(rom_usage / 1024.0, rom_usage / rom_size * 100.0))
     print("RAM usage: {:.2f}KiB \t({:.2f}%)\n".format(ram_usage / 1024.0, ram_usage / ram_size * 100.0))
 
 def main():
