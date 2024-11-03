@@ -407,6 +407,7 @@ class Builder:
                         self._initialize_rom_software()
             else:
                 print('... but cpu.use_rom is false')
+                self._prepare_rom_software()
                 self._generate_rom_software(compile_bios=use_bios)
 
         # Translate compile_gateware to run.

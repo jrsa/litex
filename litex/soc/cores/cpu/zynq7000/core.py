@@ -77,34 +77,34 @@ class Zynq7000(CPU):
             "PCW_NUM_F2P_INTR_INPUTS"  : 16,
         }
         ps7_rst_n       = Signal()
-        ps7_ddram_pads  = platform.request("ps7_ddram")
+        #ps7_ddram_pads  = platform.request("ps7_ddram")
         self.cpu_params = dict(
-            # Clk / Rst.
-            io_PS_CLK   = platform.request("ps7_clk"),
-            io_PS_PORB  = platform.request("ps7_porb"),
-            io_PS_SRSTB = platform.request("ps7_srstb"),
+            # # Clk / Rst.
+            # io_PS_CLK   = platform.request("ps7_clk"),
+            # io_PS_PORB  = platform.request("ps7_porb"),
+            # io_PS_SRSTB = platform.request("ps7_srstb"),
 
-            # MIO.
-            io_MIO = platform.request("ps7_mio"),
+            # # MIO.
+            # io_MIO = platform.request("ps7_mio"),
 
-            # DDRAM.
-            io_DDR_Addr     = ps7_ddram_pads.addr,
-            io_DDR_BankAddr = ps7_ddram_pads.ba,
-            io_DDR_CAS_n    = ps7_ddram_pads.cas_n,
-            io_DDR_Clk_n    = ps7_ddram_pads.ck_n,
-            io_DDR_Clk      = ps7_ddram_pads.ck_p,
-            io_DDR_CKE      = ps7_ddram_pads.cke,
-            io_DDR_CS_n     = ps7_ddram_pads.cs_n,
-            io_DDR_DM       = ps7_ddram_pads.dm,
-            io_DDR_DQ       = ps7_ddram_pads.dq,
-            io_DDR_DQS_n    = ps7_ddram_pads.dqs_n,
-            io_DDR_DQS      = ps7_ddram_pads.dqs_p,
-            io_DDR_ODT      = ps7_ddram_pads.odt,
-            io_DDR_RAS_n    = ps7_ddram_pads.ras_n,
-            io_DDR_DRSTB    = ps7_ddram_pads.reset_n,
-            io_DDR_WEB      = ps7_ddram_pads.we_n,
-            io_DDR_VRN      = ps7_ddram_pads.vrn,
-            io_DDR_VRP      = ps7_ddram_pads.vrp,
+            # # DDRAM.
+            # io_DDR_Addr     = ps7_ddram_pads.addr,
+            # io_DDR_BankAddr = ps7_ddram_pads.ba,
+            # io_DDR_CAS_n    = ps7_ddram_pads.cas_n,
+            # io_DDR_Clk_n    = ps7_ddram_pads.ck_n,
+            # io_DDR_Clk      = ps7_ddram_pads.ck_p,
+            # io_DDR_CKE      = ps7_ddram_pads.cke,
+            # io_DDR_CS_n     = ps7_ddram_pads.cs_n,
+            # io_DDR_DM       = ps7_ddram_pads.dm,
+            # io_DDR_DQ       = ps7_ddram_pads.dq,
+            # io_DDR_DQS_n    = ps7_ddram_pads.dqs_n,
+            # io_DDR_DQS      = ps7_ddram_pads.dqs_p,
+            # io_DDR_ODT      = ps7_ddram_pads.odt,
+            # io_DDR_RAS_n    = ps7_ddram_pads.ras_n,
+            # io_DDR_DRSTB    = ps7_ddram_pads.reset_n,
+            # io_DDR_WEB      = ps7_ddram_pads.we_n,
+            # io_DDR_VRN      = ps7_ddram_pads.vrn,
+            # io_DDR_VRP      = ps7_ddram_pads.vrp,
 
             # USB0.
             i_USB0_VBUS_PWRFAULT = 0,
