@@ -506,9 +506,9 @@ class Zynq7000(CPU):
             'io_DDR_CS_n': 'DDRCSB',
             'io_DDR_Clk_n': 'DDRCKN',
             'io_DDR_Clk': 'DDRCKP',
-            'o_FCLK_CLK0': 'FCLKCLK', # apparently vivado has 4 separate wires for the fabric clock, where yosys has a single [3:0] wire
-            'o_FCLK_RESET0_N': 'FCLKRESETN',
-            'i_USB0_VBUS_PWRFAULT': 'EMIOUSB0VBUSPWRFAULT'
+            'o_FCLK_CLK0': 'o_FCLKCLK', # apparently vivado has 4 separate wires for the fabric clock, where yosys has a single [3:0] wire
+            'o_FCLK_RESET0_N': 'o_FCLKRESETN',
+            'i_USB0_VBUS_PWRFAULT': 'i_EMIOUSB0VBUSPWRFAULT'
         }
 
         yosys_ps7_wires = {}
@@ -519,7 +519,7 @@ class Zynq7000(CPU):
                 name_parts = name.split('_')
                 new_name = '_'.join([name_parts[:1][0], ''.join(name_parts[1:]).upper()])
                 #new_name = new_name.replace('n', 'B').upper()
-                print(f'{name} -> {new_name}')
-                yosys_ps7_wires[new_name] = wire
+            print(f'{name} -> {new_name}')
+            yosys_ps7_wires[new_name] = wire
 
         self.specials += Instance('PS7', **yosys_ps7_wires)
