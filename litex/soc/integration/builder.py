@@ -313,6 +313,7 @@ class Builder:
     def _prepare_rom_software(self):
         # Create directories for all software packages.
         for name, src_dir in self.software_packages:
+            print(f'preparing package {name}...')
             _create_dir(os.path.join(self.software_dir, name))
 
     def _generate_rom_software(self, compile_bios=True):
@@ -321,6 +322,7 @@ class Builder:
 
             # Skip BIOS compilation when disabled.
             if name == "bios" and not compile_bios:
+                print('skipping BIOS compilation...')
                 continue
             # Compile software package.
             dst_dir  = os.path.join(self.software_dir, name)
@@ -407,6 +409,7 @@ class Builder:
                         self._initialize_rom_software()
             else:
                 print('... but cpu.use_rom is false')
+                self._prepare_rom_software()
                 self._generate_rom_software(compile_bios=use_bios)
 
         # Translate compile_gateware to run.

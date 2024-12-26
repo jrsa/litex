@@ -60,7 +60,7 @@ class Zynq7000(CPU):
 
         # [ 7: 0]: SPI Numbers [68:61]
         # [15: 8]: SPI Numbers [91:84]
-        self.interrupt      = Signal(16)
+        # self.interrupt      = Signal(16)
 
         # # #
 
@@ -110,7 +110,7 @@ class Zynq7000(CPU):
             i_USB0_VBUS_PWRFAULT = 0,
 
             # Interrupts PL -> PS.
-            i_IRQ_F2P       = self.interrupt,
+            # i_IRQ_F2P       = self.interrupt,
 
             # Fabric Clk / Rst.
             o_FCLK_CLK0     = ClockSignal("ps7"),
